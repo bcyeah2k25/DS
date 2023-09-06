@@ -2,11 +2,12 @@
 
 #include <iostream>
 using namespace std;
-#define MAX 10
+#define MAX 5
+#define SMAX 12
 
 class sparseMatrix
 {
-    int s[MAX][3];
+    int s[SMAX][3];
 
 public:
     void ReadM()
@@ -18,7 +19,7 @@ public:
             cout << "Enter the (row size) (column size) (number of non-zero numbers) : ";
             cin >> r >> c >> nz;
 
-            if ((r < 1 || r > MAX) || (c < 1 || c > MAX) || (nz < 1 || nz >= ((r * c) / 2)))
+            if ((r < 1 || r > MAX) || (c < 1 || c > MAX) || (nz < 1 || nz >= ((r * c) / 2)) )
             {
                 cout << "\nInvalid values......Re-Enter!" << endl;
             }
