@@ -2,7 +2,7 @@
 
 #include <iostream>
 using namespace std;
-#define MAX 10
+#define MAX 5
 
 class Matrix
 {
@@ -24,7 +24,7 @@ public:
             if ((r < 1 || r > 10) || (c < 1 || c > 10))
             {
 
-                cout << "\n\nRow and Column of the matrix should be from 1 to 10!....Re-Try\n";
+                cout << "\n\nRow and Column of the matrix should be from 1 to "<<MAX<<" !....Re-Try\n";
             }
             else
             {
