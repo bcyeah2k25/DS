@@ -1,0 +1,1 @@
+/*Write a program to search an element using linear search. Using user defined functions and pass parameters*/
