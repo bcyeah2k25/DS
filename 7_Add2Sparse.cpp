@@ -39,7 +39,7 @@ public:
             cout << "Enter the (row) (column) (non-zero number) : ";
             cin >> R >> C >> NZN;
 
-            if ((R < 0 || R >= r) || (C < 0 || C >= c) || (NZN < 1))
+            if ((R < 0 || R >= r) || (C < 0 || C >= c) || (NZN == 0))
             {
                 cout << "\nInvalid values......Re-Enter!" << endl;
                 i--;
