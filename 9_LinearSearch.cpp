@@ -3,7 +3,7 @@ Using user defined functions and pass parameters*/
 
 #include <iostream>
 using namespace std;
-#define MAX 10
+#define MAX 5
 
 class Array
 {
@@ -19,11 +19,11 @@ public:
         {
             cout << "Enter the number of elements : ";
             cin >> n;
-            if ((n < 1) || (n > 10))
+            if ((n < 1) || (n > MAX))
             {
                 cout << endl
                      << endl
-                     << "Number of elements should be from 1 to 10!....Re-Enter!" << endl;
+                     << "Number of elements should be from 1 to "<<MAX<<" !....Re-Enter!" << endl;
             }
             else
             {
@@ -42,17 +42,17 @@ public:
     void DisplayA()
     {
 
-        cout << endl
-             << endl
-             << "Array is: ";
+        cout << endl;
+        cout << "Array : [ ";
         for (int i = 0; i < n; i++)
         {
-            cout << values[i] << "\t";
+            cout << values[i];
             if (i < n - 1)
             {
-                cout << " , ";
+                cout << ", ";
             }
         }
+        cout << " ]";
     }
 
     bool SearchItem(int &item)
@@ -77,9 +77,12 @@ int main()
     Array a;
 
     a.ReadA();
+    a.DisplayA();
 
     int x;
-    cout << "Enter the item to be searched : ";
+    cout << endl
+         << endl
+         << "Enter the item to be searched : ";
     cin >> x;
 
     if (a.SearchItem(x))
