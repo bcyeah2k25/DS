@@ -3,7 +3,6 @@
 #include <iostream>
 using namespace std;
 #define MAX 5
-int errorCheckingVal = -99999;
 
 class Stack
 {
@@ -54,67 +53,34 @@ public:
         }
     }
 
+    int getElement()
+    {
+        return a[tos];
+    }
+
     int Pop()
     {
-        int ch;
-
-        while (true)
-        {
-            cout << endl
-                 << "Do you want to pop element (" << a[tos] << ") from the stack!" << endl
-                 << "1.Yes" << endl
-                 << "2.No" << endl
-                 << "Enter your choice : ";
-            cin >> ch;
-
-            switch (ch)
-            {
-
-            case 1:
-            {
-
-                int x = a[tos];
-                tos--;
-                return x;
-                break;
-            }
-
-            case 2:
-            {
-                return errorCheckingVal;
-            }
-
-            default:
-            {
-                cout << endl
-                     << endl
-                     << "Invalid choice !" << endl;
-            }
-            }
-        }
+        int x = a[tos];
+        tos--;
+        return x;
     }
 };
-
-void menu(Stack s)
+int main()
 {
+    Stack s;
+
+    s.ReadS();
+    s.DispS();
+
     int ch;
+
+menu:
+
     while (true)
     {
-
-        if (s.getTos() < 0)
-        {
-            cout << endl
-                 << endl
-                 << "Stack is empty! (Stack underflow)" << endl
-                 << endl
-                 << "Exiting.........!" << endl;
-            exit(0);
-        }
-
         cout << endl
              << endl;
         cout << "1.Pop from stack" << endl
-             << "2.Display stack" << endl
              << "0.Exit" << endl
              << "Enter your choice : ";
         cin >> ch;
@@ -123,22 +89,57 @@ void menu(Stack s)
         {
         case 1:
         {
-            int x = s.Pop();
-            if (x != errorCheckingVal)
+            int cho;
+
+            while (true)
             {
-                cout << endl
-                     << endl
-                     << "Element (" << x << ") has been succesfully poped from stack!" << endl;
                 s.DispS();
+                int z = s.getElement();
+                cout << endl
+                     << "Do you want to pop element (" << z << ") from the stack!" << endl
+                     << "1.Yes" << endl
+                     << "2.No" << endl
+                     << "Enter your choice : ";
+                cin >> cho;
+
+                switch (cho)
+                {
+
+                case 1:
+                {
+                    int y = s.Pop();
+                    cout << endl
+                         << endl
+                         << "Element ( " << y << " ) succefully poped from the stack !" << endl;
+
+                    if (s.getTos() < 0)
+                    {
+                        cout << endl
+                             << endl
+                             << "Stack is empty! (Stack underflow)" << endl
+                             << endl
+                             << "Exiting.........!" << endl;
+                        exit(0);
+                    }
+                    break;
+                }
+                case 2:
+                {
+                    goto menu;
+                    break;
+                }
+                default:
+                {
+                    cout << endl
+                         << endl
+                         << "Invalid choice !" << endl;
+                    break;
+                }
+                }
             }
             break;
         }
-        case 2:
-        {
-            s.DispS();
-            break;
-        }
-        case 3:
+        case 0:
         {
             cout << endl
                  << endl
@@ -152,15 +153,6 @@ void menu(Stack s)
                  << "Invalid choice !" << endl;
         }
     }
-}
-
-int main()
-{
-    Stack s;
-
-    s.ReadS();
-    s.DispS();
-    menu(s);
 
     return 0;
 }
