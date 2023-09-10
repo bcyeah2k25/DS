@@ -65,22 +65,34 @@ public:
         return x;
     }
 };
+
 int main()
 {
     Stack s;
 
     s.ReadS();
-    s.DispS();
 
     int ch;
 
-menu:
-
     while (true)
     {
+        if (s.getTos() < 0)
+        {
+            cout << endl
+                 << endl
+                 << "Stack is empty (Stack Underflow) !" << endl;
+            cout << endl
+                 << endl
+                 << "Exiting......." << endl;
+            exit(0);
+        }
+
+        s.DispS();
+        int z = s.getElement();
+
         cout << endl
              << endl;
-        cout << "1.Pop from stack" << endl
+        cout << "1.Pop element ( " << z << " ) from stack" << endl
              << "0.Exit" << endl
              << "Enter your choice : ";
         cin >> ch;
@@ -89,54 +101,10 @@ menu:
         {
         case 1:
         {
-            int cho;
-
-            while (true)
-            {
-                s.DispS();
-                int z = s.getElement();
-                cout << endl
-                     << "Do you want to pop element (" << z << ") from the stack!" << endl
-                     << "1.Yes" << endl
-                     << "2.No" << endl
-                     << "Enter your choice : ";
-                cin >> cho;
-
-                switch (cho)
-                {
-
-                case 1:
-                {
-                    int y = s.Pop();
-                    cout << endl
-                         << endl
-                         << "Element ( " << y << " ) succefully poped from the stack !" << endl;
-
-                    if (s.getTos() < 0)
-                    {
-                        cout << endl
-                             << endl
-                             << "Stack is empty! (Stack underflow)" << endl
-                             << endl
-                             << "Exiting.........!" << endl;
-                        exit(0);
-                    }
-                    break;
-                }
-                case 2:
-                {
-                    goto menu;
-                    break;
-                }
-                default:
-                {
-                    cout << endl
-                         << endl
-                         << "Invalid choice !" << endl;
-                    break;
-                }
-                }
-            }
+            int y = s.Pop();
+            cout << endl
+                 << endl
+                 << "Element (" << y << ") has been succefully poped from stack !" << endl;
             break;
         }
         case 0:
