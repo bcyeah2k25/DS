@@ -65,7 +65,6 @@ public:
         return x;
     }
 };
-
 int main()
 {
     Stack s;
@@ -79,17 +78,6 @@ menu:
 
     while (true)
     {
-
-        if (s.getTos() < 0)
-        {
-            cout << endl
-                 << endl
-                 << "Stack is empty! (Stack underflow)" << endl
-                 << endl
-                 << "Exiting.........!" << endl;
-            exit(0);
-        }
-
         cout << endl
              << endl;
         cout << "1.Pop from stack" << endl
@@ -105,6 +93,7 @@ menu:
 
             while (true)
             {
+                s.DispS();
                 int z = s.getElement();
                 cout << endl
                      << "Do you want to pop element (" << z << ") from the stack!" << endl
@@ -122,7 +111,16 @@ menu:
                     cout << endl
                          << endl
                          << "Element ( " << y << " ) succefully poped from the stack !" << endl;
-                    s.DispS();
+
+                    if (s.getTos() < 0)
+                    {
+                        cout << endl
+                             << endl
+                             << "Stack is empty! (Stack underflow)" << endl
+                             << endl
+                             << "Exiting.........!" << endl;
+                        exit(0);
+                    }
                     break;
                 }
                 case 2:
