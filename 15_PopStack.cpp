@@ -1,3 +1,5 @@
+/*Write a program to delete more than one element form the stack*/
+
 #include <iostream>
 using namespace std;
 #define MAX 5
