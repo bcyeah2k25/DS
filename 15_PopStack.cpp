@@ -1,12 +1,10 @@
-/*Write a program to delete more than one element form a stack*/
-
 #include <iostream>
 using namespace std;
 #define MAX 5
+int errorCheckingVal = -99999;
 
 class Stack
 {
-
     int tos = 0;
     int a[MAX];
     int n;
@@ -15,10 +13,8 @@ public:
     int getTos() { return tos; }
     void ReadS()
     {
-
         while (true)
         {
-
             cout << "Enter the size of the stack : ";
             cin >> n;
 
@@ -83,11 +79,7 @@ public:
 
             case 2:
             {
-                cout << endl
-                     << endl
-                     << "Exiting............." << endl;
-                exit(0);
-                break;
+                return errorCheckingVal;
             }
 
             default:
@@ -101,14 +93,8 @@ public:
     }
 };
 
-int main()
+void menu(Stack s)
 {
-
-    Stack s;
-
-    s.ReadS();
-    s.DispS();
-
     int ch;
     while (true)
     {
@@ -136,9 +122,13 @@ int main()
         case 1:
         {
             int x = s.Pop();
-            cout << endl
-                 << endl
-                 << "Element (" << x << ") has been succesfully poped from stack!" << endl;
+            if (x != errorCheckingVal)
+            {
+                cout << endl
+                     << endl
+                     << "Element (" << x << ") has been succesfully poped from stack!" << endl;
+                s.DispS();
+            }
             break;
         }
         case 2:
@@ -160,6 +150,15 @@ int main()
                  << "Invalid choice !" << endl;
         }
     }
+}
+
+int main()
+{
+    Stack s;
+
+    s.ReadS();
+    s.DispS();
+    menu(s);
 
     return 0;
 }
