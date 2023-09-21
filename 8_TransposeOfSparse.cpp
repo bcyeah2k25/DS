@@ -89,7 +89,26 @@ public:
             temp.s[i][2] = s[i][2];
         }
 
+        temp.sortRow();
+
         return temp;
+    }
+
+    void sortRow()
+    {
+        int nz = s[0][2];
+        for (int i = 1; i < nz; i++)
+        {
+            for (int j = 1; j < nz - i + 1; j++)
+            {
+                if (s[j][0] > s[j + 1][0] || (s[j][0] == s[j + 1][0] && s[j][1] > s[j + 1][1]))
+                {
+                    swap(s[j][0], s[j + 1][0]);
+                    swap(s[j][1], s[j + 1][1]);
+                    swap(s[j][2], s[j + 1][2]);
+                }
+            }
+        }
     }
 };
 
