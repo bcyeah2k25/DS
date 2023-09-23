@@ -1,3 +1,6 @@
+/*Write a program to Implementation of stack using arrays (linear stack) menu driven 
+program.*/
+
 #include<iostream>
 using namespace std;
 #define MAX 10
