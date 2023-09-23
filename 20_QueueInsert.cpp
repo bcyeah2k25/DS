@@ -1,3 +1,5 @@
+/*Write a program to insert more than one element into a queue.*/
+
 #include<iostream>
 using namespace std;
 #define MAX 5
