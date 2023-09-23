@@ -1,13 +1,10 @@
-/*Write a program to convert Infix to postfix expression / notation.*/
-
 #include <iostream>
-#include <cmath>
 #include <string>
 using namespace std;
 
 class Stack
 {
-    int s[20];
+    char data[100];
     int top;
 
 public:
@@ -16,23 +13,128 @@ public:
         top = -1;
     }
 
-    void push(int value)
+    void push(char c)
     {
-        if (top < 19)
-        {
-            s[++top] = value;
-        }
+        data[++top] = c;
     }
 
-    int pop()
+    char pop()
     {
-        if (top >= 0)
+        if (!isEmpty())
         {
-            return s[top--];
+            return data[top--];
         }
-        else
+        return '\0';
+    }
+
+    char peek()
+    {
+        if (!isEmpty())
         {
-            return -1;
+            return data[top];
         }
+        return '\0';
+    }
+
+    bool isEmpty()
+    {
+        return top == -1;
     }
 };
+
+class InfixToPostfix
+{
+    string infix;
+    string postfix;
+
+    int getPrecedence(char c)
+    {
+        if (c == '^')
+            return 3;
+        else if (c == '*' || c == '/')
+            return 2;
+        else if (c == '+' || c == '-')
+            return 1;
+        else
+            return 0;
+    }
+
+public:
+    InfixToPostfix()
+    {
+        infix = "";
+        postfix = "";
+    }
+
+    void readInfix()
+    {
+        cout << "Enter an infix expression: ";
+        getline(cin, infix);
+    }
+
+    void displayInfix()
+    {
+        cout << "Infix expression: " << infix << endl;
+    }
+
+    string convert()
+    {
+        Stack operatorStack;
+
+        for (int i = 0; i < infix.length(); i++)
+        {
+            char c = infix[i];
+
+            if (isalnum(c))
+            {
+                postfix += c;
+                postfix += ' ';
+            }
+            else if (c == '(')
+            {
+                operatorStack.push(c);
+            }
+            else if (c == ')')
+            {
+                while (!operatorStack.isEmpty() && operatorStack.peek() != '(')
+                {
+                    postfix += operatorStack.pop();
+                    postfix += ' ';
+                }
+                if (!operatorStack.isEmpty() && operatorStack.peek() == '(')
+                {
+                    operatorStack.pop();
+                }
+            }
+            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+            {
+                while (!operatorStack.isEmpty() && getPrecedence(c) <= getPrecedence(operatorStack.peek()))
+                {
+                    postfix += operatorStack.pop();
+                    postfix += ' ';
+                }
+                operatorStack.push(c);
+            }
+        }
+
+        while (!operatorStack.isEmpty())
+        {
+            postfix += operatorStack.pop();
+            postfix += ' ';
+        }
+
+        return postfix;
+    }
+};
+
+int main()
+{
+    InfixToPostfix converter;
+    converter.readInfix();
+    converter.displayInfix();
+    string postfixExpression = converter.convert();
+
+    cout << "Postfix expression: " << postfixExpression << endl;
+
+    return 0;
+}
