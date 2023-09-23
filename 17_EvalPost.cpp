@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cctype>
 using namespace std;
 
 class Stack
@@ -30,7 +29,7 @@ public:
         }
         else
         {
-            return -1; 
+            return -1;
         }
     }
 };
