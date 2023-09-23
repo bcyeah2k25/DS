@@ -1,3 +1,5 @@
+/*Write a program to convert Infix to postfix expression / notation.*/
+
 #include <iostream>
 #include <string>
 using namespace std;
@@ -60,11 +62,6 @@ class InfixToPostfix
     }
 
 public:
-    InfixToPostfix()
-    {
-        infix = "";
-        postfix = "";
-    }
 
     void readInfix()
     {
@@ -87,8 +84,14 @@ public:
 
             if (isalnum(c))
             {
-                postfix += c;
-                postfix += ' ';
+                string operand;
+                while (isalnum(infix[i]))
+                {
+                    operand += infix[i];
+                    i++;
+                }
+                i--; 
+                postfix += operand + ' ';
             }
             else if (c == '(')
             {
