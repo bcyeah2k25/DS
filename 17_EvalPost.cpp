@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 #include <string>
 using namespace std;
 
@@ -68,7 +69,7 @@ public:
                 j--;
                 stack.push(num);
             }
-            else if (p[j] == '+' || p[j] == '-' || p[j] == '*' || p[j] == '/')
+            else if (p[j] == '+' || p[j] == '-' || p[j] == '*' || p[j] == '/' || p[j] == '^')
             {
                 int operand2 = stack.pop();
                 int operand1 = stack.pop();
@@ -86,6 +87,9 @@ public:
                     break;
                 case '/':
                     stack.push(operand1 / operand2);
+                    break;
+                case '^':
+                    stack.push(pow(operand1, operand2));
                     break;
                 }
             }
