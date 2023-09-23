@@ -1,3 +1,5 @@
+/*Write a program to add two Polynomials using arrays*/
+
 #include <iostream>
 using namespace std;
 #define MAX 20
