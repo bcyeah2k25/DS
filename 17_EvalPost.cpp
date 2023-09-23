@@ -39,7 +39,6 @@ class Postfix
 {
     string p;
     Stack stack;
-    int i = -1;
 
 public:
     void ReadP()
