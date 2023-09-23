@@ -1,3 +1,5 @@
+/*Write a program to insert more than one element into a queue*/
+
 #include <iostream>
 #include <cctype>
 using namespace std;
