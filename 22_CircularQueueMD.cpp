@@ -77,10 +77,10 @@ public:
         cout << "Enter the element to insert: ";
         cin >> x;
 
-        // if (isEmpty())
-        // {
-        //     f = 0;
-        // }
+        if (isEmpty())
+        {
+            f = 0;
+        }
 
         r = (r + 1) % MAX;
         q[r] = x;
