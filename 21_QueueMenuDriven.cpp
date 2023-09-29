@@ -83,7 +83,6 @@ public:
         int x;
         cout << "Enter the element : ";
         cin >> x;
-        int l = r;
         q[++r] = x;
 
         cout << endl
