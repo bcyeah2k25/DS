@@ -104,18 +104,18 @@ int main()
 
         cout << endl
              << endl
-             << "Do you want to insert another element (enter 'y' for continue) :";
+             << "Enter 'y' to add another element :";
         cin >> ch;
-    } while (ch == 'y');
+    } while (ch == 'y' || ch == 'Y');
 
     while (true)
     {
         cout << endl
              << endl
-             << "Do you want to insert another element at begining (enter 'y' for continue) : ";
+             << "Enter 'y' to insert at begining : ";
         cin >> ch;
 
-        if (ch != 'y')
+        if (ch != 'y' && ch != 'Y')
         {
             break;
         }
@@ -124,6 +124,8 @@ int main()
         l.DispLL();
     }
 
+    cout << endl
+         << "Exiting...." << endl;
+
     return 0;
 }
-
