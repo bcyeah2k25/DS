@@ -1,3 +1,6 @@
+/*Write a program to implementation of 
+circular queue using arrays (linear queue ) menu driven program*/
+
 #include <iostream>
 #define MAX 5
 using namespace std;
