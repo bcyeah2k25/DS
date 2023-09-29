@@ -127,33 +127,3 @@ int main()
     return 0;
 }
 
-
-//     void insertbeginning(int n) {
-//         node* ptr = new node;
-//         ptr->data = n;
-//         ptr->next = start;
-//         start = ptr;
-//     }
-// };
-
-// int main() {
-//     int item, n;
-//     list obj;
-//     cout << "Enter the limit of the list" << endl;
-//     cin >> n;
-//     for(int i = 0; i < n; i++) {
-//         int data;
-//         cout << "Enter data for item " << i + 1 << ": ";
-//         cin >> data;
-//         obj.create_node(data);
-//     }
-//     cout << "\nList before inserting" << endl;
-//     obj.display();
-//     cout << "\nEnter the item to be inserted at the beginning" << endl;
-//     cin >> item;
-//     obj.insertbeginning(item);
-//     cout << "\nList after inserting" << endl;
-//     obj.display();
-
-//     return 0;
-// }
