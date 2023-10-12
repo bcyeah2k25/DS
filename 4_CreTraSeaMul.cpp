@@ -86,7 +86,7 @@ public:
                 {
                     cout << endl
                          << endl
-                         << "Element (" << x << ") has been found at position (" << i << ")!";
+                         << "Element (" << x << ") has been found at position (" << ++i << ")!";
                     found = true;
                 }
             }
