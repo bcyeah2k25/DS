@@ -41,7 +41,10 @@ public:
                  << "List : ";
             while (node != nullptr)
             {
-                cout << node->data << "\t";
+                cout << node->data;
+                if(node->next != nullptr){
+                    cout<<" --> ";
+                }
                 node = node->next;
             }
         }
