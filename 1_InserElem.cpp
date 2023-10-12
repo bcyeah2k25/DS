@@ -9,7 +9,6 @@ class Array
 {
 
 public:
-
     void Display(int a[], int &size)
     {
 
@@ -47,7 +46,8 @@ public:
                 cout << endl
                      << "Enter the position : ";
                 cin >> pos;
-                if (pos < 0 || pos > size)
+                pos--;
+                if (pos < 0 || pos > MAX)
                 {
                     cout << endl
                          << "Invalid position....Position should be from 0 to " << size << "!" << endl;
