@@ -65,7 +65,7 @@ public:
             a[pos] = x;
             size++;
             cout << endl
-                 << "Element (" << x << ") succesfully inserted at position (" << pos << ")!";
+                 << "Element (" << x << ") succesfully inserted at position (" << ++pos << ")!";
         }
     }
 };
