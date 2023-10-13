@@ -42,8 +42,9 @@ public:
             while (node != nullptr)
             {
                 cout << node->data;
-                if(node->next != nullptr){
-                    cout<<" --> ";
+                if (node->next != nullptr)
+                {
+                    cout << " --> ";
                 }
                 node = node->next;
             }
@@ -80,6 +81,24 @@ public:
         DispLL();
     }
 
+    bool isContinue()
+    {
+        char ch;
+        cout << endl
+             << endl
+             << "Enter 'y' to add another element : ";
+        cin >> ch;
+
+        if (ch == 'y' || ch == 'Y')
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     void InsAtBeg()
     {
 
@@ -97,6 +116,15 @@ public:
         start = newNode;
 
         DispLL();
+
+        if (isContinue())
+        {
+            InsAtBeg();
+        }
+        else
+        {
+            return;
+        }
     }
 
     void InsAtEnd()
@@ -123,6 +151,15 @@ public:
         temp->next = newNode;
 
         DispLL();
+
+        if (isContinue())
+        {
+            InsAtEnd();
+        }
+        else
+        {
+            return;
+        }
     }
 
     Node *SearchNode(int x)
@@ -177,6 +214,15 @@ public:
         node->next = newNode;
 
         DispLL();
+
+        if (isContinue())
+        {
+            InsAftElem();
+        }
+        else
+        {
+            return;
+        }
     }
 };
 
@@ -187,17 +233,12 @@ int main()
     char ch;
 
     cout << endl
-         << "#Creating an linked list......!" << endl;
+         << "Creating an linked list......!" << endl;
+
     do
     {
-
         l.CreateLL();
-
-        cout << endl
-             << endl
-             << "Enter 'y' to add another element :";
-        cin >> ch;
-    } while (ch == 'y' || ch == 'Y');
+    } while (l.isContinue());
 
     int choice;
 
