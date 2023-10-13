@@ -1,3 +1,5 @@
+/*Write a program to add two Polynomials using arrays*/
+
 #include <iostream>
 using namespace std;
 #define MAX 20
@@ -28,6 +30,19 @@ public:
 
     void DispP()
     {
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                if (po[i].ex < po[j].ex)
+                {
+                    P temp = po[i];
+                    po[i] = po[j];
+                    po[j] = temp;
+                }
+            }
+        }
+
         cout << "Polynomial : ";
         for (int i = 0; i < n; i++)
         {
