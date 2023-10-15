@@ -1,9 +1,7 @@
 /*Write a C++ program to Delete an element anywhere
 from the linear linked list. Menu driven
 program (at the beginning, end and after an element).*/
-/*Write a C++ program to Delete an element anywhere
-from the linear linked list. Menu driven
-program (at the beginning, end and after an element).*/
+
 
 #include <iostream>
 using namespace std;
