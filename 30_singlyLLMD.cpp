@@ -12,7 +12,6 @@ struct Node
 
 class LinkedList
 {
-private:
     Node *start;
 
 public:
@@ -118,11 +117,11 @@ int main()
 
     while (true)
     {
-        cout << "\n\n1. Insert into list\n";
-        cout << "2. Delete from list\n";
-        cout << "3. Display list\n";
-        cout << "0. Exit\n";
-        cout << "Enter your choice: ";
+        cout << "\n\n1. Insert into list\n"
+             << "2. Delete from list\n"
+             << "3. Display list\n"
+             << "0. Exit\n"
+             << "Enter your choice: ";
         cin >> choice;
 
         switch (choice)
