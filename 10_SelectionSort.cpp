@@ -38,6 +38,13 @@ public:
         cout << " ]";
     }
 
+    void Swap(int &x, int &y)
+    {
+        int temp = x;
+        x = y;
+        y = temp;
+    }
+
     void SelectionSort(int &n)
     {
         int minIndex, i;
@@ -56,7 +63,7 @@ public:
 
             if (minIndex != i)
             {
-                swap(a[i], a[minIndex]);
+                Swap(a[i], a[minIndex]);
             }
         }
     }
