@@ -147,30 +147,53 @@ public:
 
     void DelAftElem()
     {
-        int xi;
-        Node *node;
-        while (true)
+        if (isSingleElem())
         {
-            cout << "After which element to delete: ";
-            cin >> xi;
-            node = SearchNode(xi);
-            if (node != nullptr)
-            {
-                break;
-            }
-        }
-
-        if (node->next != nullptr)
-        {
-            Node *temp = node->next;
-            node->next = temp->next;
-            DispDeleted(temp->data);
-            delete temp;
-            DispLL();
+            return;
         }
         else
         {
-            cout << "No element to delete after " << xi << endl;
+            int xi;
+            Node *node;
+            while (true)
+            {
+                cout << "After which element to delete: ";
+                cin >> xi;
+                node = SearchNode(xi);
+                if (node != nullptr)
+                {
+                    break;
+                }
+            }
+
+            if (node->next != nullptr)
+            {
+                Node *temp = node->next;
+                node->next = temp->next;
+                DispDeleted(temp->data);
+                delete temp;
+                DispLL();
+            }
+            else
+            {
+                cout << "No element to delete after " << xi << endl;
+            }
+        }
+    }
+
+    bool isSingleElem()
+    {
+
+        if (start->next == nullptr)
+        {
+            cout << endl
+                 << endl
+                 << "Deletion after a element not possible single element left!" << endl;
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 };
