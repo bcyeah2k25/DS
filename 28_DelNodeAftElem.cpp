@@ -83,9 +83,6 @@ public:
                 temp = temp->next;
             }
         }
-
-        cout << endl
-             << "Element not found!..Re-Try..!" << endl;
         return nullptr;
     }
 
@@ -111,16 +108,11 @@ public:
 
         Node *node = SearchNode(x);
 
-        if (node == nullptr)
-        {
-            DelNode();
-        }
-
-        if (node->next == nullptr)
+        if (node->next == nullptr || node == nullptr)
         {
             cout << endl
                  << endl
-                 << "There is no node after this element!..Re-Try!" << endl;
+                 << "There is no node after this element or Element not found..Re-Try..!" << endl;
             DelNode();
         }
 
