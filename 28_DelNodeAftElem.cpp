@@ -24,8 +24,7 @@ public:
     void CreateLL()
     {
         int x;
-        cout << endl
-             << "Enter the number to insert: ";
+        cout << endl << "Enter the number to insert: ";
         cin >> x;
 
         Node *newNode = new Node;
@@ -52,14 +51,11 @@ public:
         Node *node = start;
         if (node == nullptr)
         {
-            cout << endl
-                 << endl
-                 << "Empty list!" << endl;
+            cout << endl << "Empty list!" << endl;
         }
         else
         {
-            cout << endl
-                 << "List : ";
+            cout << endl << "List : ";
             while (node != nullptr)
             {
                 cout << node->data << "\t";
@@ -86,34 +82,28 @@ public:
         return nullptr;
     }
 
+    bool isDelPossible()
+    {
+        if (start == nullptr || start->next == nullptr)
+        {
+            cout << endl << "Deletion is not possible. Empty list or single element left!" << endl;
+            return false;
+        }
+        return true;
+    }
+
     void DelNode()
     {
-
-        if (start == nullptr)
-        {
-            cout << endl
-                 << endl
-                 << "Deletion is not possible..Empty list!" << endl;
-            cout << endl
-                 << endl
-                 << "Exiting..." << endl;
-            exit(0);
-        }
-
         int x;
-        cout << endl
-             << endl
-             << "After which element is the node to be deleted :  ";
+        cout << endl << "After which element is the node to be deleted: ";
         cin >> x;
 
         Node *node = SearchNode(x);
 
-        if (node->next == nullptr || node == nullptr)
+        if (node == nullptr || node->next == nullptr)
         {
-            cout << endl
-                 << endl
-                 << "There is no node after this element or Element not found..Re-Try..!" << endl;
-            DelNode();
+            cout << endl << "There is no node after this element or element not found. Re-Try." << endl;
+            return;
         }
 
         Node *delNode = node->next;
@@ -121,13 +111,8 @@ public:
 
         node->next = nextNode;
 
-        cout << endl
-             << endl
-             << "Node with element (" << delNode->data << ") has been deleted!" << endl;
-
+        cout << endl << "Node with element (" << delNode->data << ") has been deleted!" << endl;
         delete delNode;
-
-        DispLL();
     }
 };
 
@@ -141,16 +126,26 @@ int main()
         l.CreateLL();
         l.DispLL();
 
-        cout << endl
-             << endl
-             << "Do you want to insert another number (enter 'y' for continue): ";
+        cout << endl << "Do you want to insert another number (enter 'y' for continue): ";
         cin >> ch;
     } while (ch == 'y');
 
-    l.DelNode();
+    do
+    {
+        if (l.isDelPossible())
+        {
+            l.DelNode();
+            l.DispLL();
+            cout << endl << "Do you want to delete another number (enter 'y' for continue): ";
+            cin >> ch;
+        }
+        else
+        {
+            break;
+        }
+    } while (ch == 'y');
 
-    cout << endl
-         << "Exiting...." << endl;
+    cout << endl << "Exiting...." << endl;
 
     return 0;
 }
