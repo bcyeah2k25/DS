@@ -147,8 +147,11 @@ public:
 
     void DelAftElem()
     {
-        if (isSingleElem())
+        if (start->next == nullptr)
         {
+            cout << endl
+                 << endl
+                 << "Deletion after a element not possible single element left!" << endl;
             return;
         }
         else
@@ -178,22 +181,6 @@ public:
             {
                 cout << "No element to delete after " << xi << endl;
             }
-        }
-    }
-
-    bool isSingleElem()
-    {
-
-        if (start->next == nullptr)
-        {
-            cout << endl
-                 << endl
-                 << "Deletion after a element not possible single element left!" << endl;
-            return true;
-        }
-        else
-        {
-            return false;
         }
     }
 };
