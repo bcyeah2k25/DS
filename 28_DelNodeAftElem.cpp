@@ -86,7 +86,7 @@ public:
     {
         if (start == nullptr || start->next == nullptr)
         {
-            cout << endl << "Deletion is not possible. Empty list or single element left!" << endl;
+            cout << endl << "Deletion is not possible. Single element left!" << endl;
             return false;
         }
         return true;
