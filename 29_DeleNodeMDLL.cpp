@@ -179,7 +179,7 @@ public:
             }
             else
             {
-                cout << "No element to delete after " << xi << endl;
+                cout <<endl<<"No element to delete after " << xi << endl;
             }
         }
     }
