@@ -26,6 +26,21 @@ public:
                  << "Enter the (co-efficient) & (exponent) : ";
             cin >> po[i].co >> po[i].ex;
         }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = i + 1; j < n; j++)
+            {
+                if (po[i].ex == po[j].ex)
+                {
+                    cout << endl
+                         << endl
+                         << "Invalid Polynomial...Enter from beginning..!" << endl
+                         << endl;
+                    ReadP(n);
+                }
+            }
+        }
     }
 
     void DispP()
