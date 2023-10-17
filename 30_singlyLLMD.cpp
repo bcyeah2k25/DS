@@ -13,33 +13,59 @@ struct Node
 class LinkedList
 {
     Node *start;
+    int count;
 
 public:
     LinkedList()
     {
         start = nullptr;
+        count = 0;
     }
 
     void insert(int value)
     {
+        int pos;
+
+        while (true)
+        {
+            cout << "Enter the position to insert : ";
+            cin >> pos;
+            pos--;
+            if (pos < 0 || pos > count)
+            {
+                cout << endl
+                     << endl
+                     << "Invalid position..!" << endl
+                     << endl;
+            }
+            else
+            {
+                break;
+            }
+        }
 
         Node *newNode = new Node;
         newNode->data = value;
-        newNode->next = nullptr;
 
-        if (start == nullptr)
+        if (pos == 0)
         {
+            newNode->next = start;
             start = newNode;
         }
         else
         {
-            Node *temp = start;
-            while (temp->next != nullptr)
+
+            int f = 0;
+            Node *prev = start;
+            while (f != pos - 1)
             {
-                temp = temp->next;
+                prev = prev->next;
+                f++;
             }
-            temp->next = newNode;
+            newNode->next = prev->next;
+            prev->next = newNode;
         }
+        count++;
     }
 
     void display()
@@ -119,7 +145,6 @@ int main()
     {
         cout << "\n\n1. Insert into list\n"
              << "2. Delete from list\n"
-             << "3. Display list\n"
              << "0. Exit\n"
              << "Enter your choice: ";
         cin >> choice;
@@ -136,9 +161,6 @@ int main()
             cout << "Enter the value to delete: ";
             cin >> value;
             list.deleteNode(value);
-            break;
-        case 3:
-            list.display();
             break;
         case 0:
             cout << "\n\nExiting..." << endl;
