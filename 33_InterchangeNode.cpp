@@ -94,13 +94,14 @@ public:
 
         if (x > n || y > n || x < 1 || y < 1)
         {
-            cout << "Invalid positions\n";
+            cout << "\n\nInvalid positions\n\n";
+            Interchange();
             return;
         }
 
         if (x == y)
         {
-            cout << "Same node, no swap needed\n";
+            cout << "\n\nPositions are same no interchange needed\n\n";
             return;
         }
 
@@ -120,7 +121,7 @@ public:
 
         if (currX == NULL || currY == NULL)
         {
-            cout << "Node not found, no swap done\n";
+            cout << "\n\nNode not found, no swap done\n\n";
             return;
         }
 
@@ -138,7 +139,7 @@ public:
         currX->next = currY->next;
         currY->next = temp;
 
-        cout << "Nodes swapped\n";
+        cout << "\n\nNodes swapped\n\n";
         DispLL();
     }
 };
