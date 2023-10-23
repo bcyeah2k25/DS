@@ -12,48 +12,14 @@ struct Node
 
 class LinkedList
 {
+private:
     Node *start;
+    int n;
 
 public:
     LinkedList()
     {
         start = nullptr;
-    }
-
-    void CreateLL()
-    {
-        int n;
-        cout << "Enter the number of elements: ";
-        cin >> n;
-
-        for (int i = 0; i < n; i++)
-        {
-            int x;
-            cout << "Enter element " << (i + 1) << ": ";
-            cin >> x;
-            Insert(x);
-        }
-    }
-
-    void Insert(int x)
-    {
-        Node *newNode = new Node;
-        newNode->data = x;
-        newNode->next = nullptr;
-
-        if (start == nullptr)
-        {
-            start = newNode;
-        }
-        else
-        {
-            Node *temp = start;
-            while (temp->next != nullptr)
-            {
-                temp = temp->next;
-            }
-            temp->next = newNode;
-        }
     }
 
     void DispLL()
@@ -69,67 +35,119 @@ public:
              << endl;
     }
 
-    Node *SearchNode(int x)
+    void CreateLL()
     {
-        int count = 0;
-        Node *temp = start;
+        cout << "Enter number of elements: ";
+        cin >> n;
 
-        while (count != x)
+        for (int i = 0; i < n; i++)
         {
+            int x;
+            cout << "Enter element " << i + 1 << ": ";
+            cin >> x;
+            Insert(x);
+        }
+    }
 
-            if (temp == nullptr)
+    void Insert(int x)
+    {
+        Node *temp = new Node;
+        temp->data = x;
+        temp->next = nullptr;
+
+        if (start == nullptr)
+        {
+            start = temp;
+        }
+        else
+        {
+            Node *curr = start;
+            while (curr->next != nullptr)
             {
-                return nullptr;
+                curr = curr->next;
             }
+            curr->next = temp;
+        }
+    }
 
-            temp = temp->next;
-            count++;
+    Node *SearchNode(int pos)
+    {
+        if (pos < 1 || pos > n)
+        {
+            return nullptr;
         }
 
-        return temp;
+        Node *curr = start;
+        for (int i = 1; i < pos; i++)
+        {
+            curr = curr->next;
+        }
+        return curr;
     }
 
     void Interchange()
     {
-
         int x, y;
+
         cout << "Enter two positions to interchange: ";
         cin >> x >> y;
 
-        x--;
-        y--;
-
-        if (x == y)
+        if (x > n || y > n || x < 1 || y < 1)
         {
-            cout << "\n\nPositions are the same, no interchange needed." << endl;
+            cout << "Invalid positions\n";
             return;
         }
 
-        Node *node1 = SearchNode(x);
-        Node *node2 = SearchNode(y);
+        if (x == y)
+        {
+            cout << "Same node, no swap needed\n";
+            return;
+        }
 
-        if (node1 && node2)
+        Node *prevX = NULL, *currX = start;
+        if (x != 1)
         {
-            swap(node1->data, node2->data);
-            DispLL();
+            prevX = SearchNode(x - 1);
+            currX = prevX->next;
         }
+
+        Node *prevY = NULL, *currY = start;
+        if (y != 1)
+        {
+            prevY = SearchNode(y - 1);
+            currY = prevY->next;
+        }
+
+        if (currX == NULL || currY == NULL)
+        {
+            cout << "Node not found, no swap done\n";
+            return;
+        }
+
+        if (prevX != NULL)
+            prevX->next = currY;
         else
-        {
-            cout << "\n\nInvalid positions.Re-Try..!\n" << endl;
-            Interchange();
-        }
+            start = currY;
+
+        if (prevY != NULL)
+            prevY->next = currX;
+        else
+            start = currX;
+
+        Node *temp = currX->next;
+        currX->next = currY->next;
+        currY->next = temp;
+
+        cout << "Nodes swapped\n";
+        DispLL();
     }
 };
 
 int main()
 {
-    LinkedList a;
-
-    cout << "Creating List...." << endl;
-    a.CreateLL();
-    a.DispLL();
-
-    a.Interchange();
-
+    LinkedList list;
+    list.CreateLL();
+    list.DispLL();
+    list.Interchange();
     return 0;
 }
