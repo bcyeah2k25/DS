@@ -71,11 +71,6 @@ public:
 
     Node *SearchNode(int pos)
     {
-        if (pos < 1 || pos > n)
-        {
-            return nullptr;
-        }
-
         Node *curr = start;
         for (int i = 1; i < pos; i++)
         {
