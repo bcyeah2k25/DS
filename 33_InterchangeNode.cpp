@@ -39,6 +39,12 @@ public:
         cout << "Enter number of elements: ";
         cin >> n;
 
+        if(n < 1){
+            cout<<endl<<endl<<"Invalid value!"<<endl;
+            CreateLL();
+            return;
+        }
+
         for (int i = 0; i < n; i++)
         {
             int x;
