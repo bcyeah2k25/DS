@@ -12,9 +12,8 @@ struct Node
 
 class LinkedList
 {
-private:
     Node *start;
-    int n;
+    int n = 0;
 
 public:
     LinkedList()
@@ -37,15 +36,18 @@ public:
 
     void CreateLL()
     {
-        cout << "Enter number of elements: ";
-        cin >> n;
+        int x;
+        n++;
+        cout<<endl<<"Enter element "<<n<<" : ";
+        cin>>x;
+        Insert(x);
 
-        for (int i = 0; i < n; i++)
-        {
-            int x;
-            cout << "Enter element " << i + 1 << ": ";
-            cin >> x;
-            Insert(x);
+        char ch;
+        cout<<"Enter 'y' to continue : ";
+        cin>>ch;
+
+        if(ch == 'y'){
+            CreateLL();
         }
     }
 
@@ -72,11 +74,6 @@ public:
 
     Node *SearchNode(int pos)
     {
-        if (pos < 1 || pos > n)
-        {
-            return nullptr;
-        }
-
         Node *curr = start;
         for (int i = 1; i < pos; i++)
         {
@@ -126,14 +123,22 @@ public:
         }
 
         if (prevX != NULL)
+        {
             prevX->next = currY;
+        }
         else
+        {
             start = currY;
+        }
 
         if (prevY != NULL)
+        {
             prevY->next = currX;
+        }
         else
+        {
             start = currX;
+        }
 
         Node *temp = currX->next;
         currX->next = currY->next;
