@@ -54,7 +54,7 @@ public:
         int c = s[0][1];
         int nz = s[0][2];
 
-        for (int i = 1; i <= nz; i++) {
+        for (int i = 0; i <= nz; i++) {
             for (int j = 0; j < 3; j++) {
                 cout << s[i][j] << "\t";
             }
@@ -77,7 +77,12 @@ public:
         temp.sort();
         return temp;
     }
-
+   void swap(int& a,int& b){
+       int temp;
+       temp = a;
+       a=b;
+       b= temp;
+    }
     void sort() {
         int nz = s[0][2];
         for (int i = 1; i < nz; i++) {
