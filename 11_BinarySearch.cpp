@@ -54,7 +54,15 @@ public:
         cout << " ]";
     }
 
-    void Sort()
+    
+    void Swap(int& a,int& b){
+        int temp;
+        temp = a;
+        a = b;
+        b = temp;
+    } 
+
+   void Sort()
     {
 
         for (int i = 0; i < n; i++)
@@ -65,7 +73,7 @@ public:
 
                 if (values[j] < values[i])
                 {
-                    swap(values[j], values[i]);
+                    Swap(values[j], values[i]);
                 }
             }
         }
