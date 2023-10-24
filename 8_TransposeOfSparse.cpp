@@ -77,7 +77,7 @@ public:
         temp.sort();
         return temp;
     }
-   void swap(int& a,int& b){
+   void Swap(int& a,int& b){
        int temp;
        temp = a;
        a=b;
@@ -88,9 +88,9 @@ public:
         for (int i = 1; i < nz; i++) {
             for (int j = 1; j < nz - i+1; j++) {
                 if (s[j][0] > s[j + 1][0] || (s[j][0] == s[j + 1][0] && s[j][1] > s[j + 1][1])) {
-                    swap(s[j][0], s[j + 1][0]);
-                    swap(s[j][1], s[j + 1][1]);
-                    swap(s[j][2], s[j + 1][2]);
+                    Swap(s[j][0], s[j + 1][0]);
+                    Swap(s[j][1], s[j + 1][1]);
+                    Swap(s[j][2], s[j + 1][2]);
                 }
             }
         }
