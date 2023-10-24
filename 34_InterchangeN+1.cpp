@@ -36,15 +36,20 @@ public:
 
   void CreateLL()
   {
-    cout << "Enter number of elements: ";
-    cin >> n;
+    int x;
+    n++;
+    cout << endl
+         << "Enter element " << n << " : ";
+    cin >> x;
+    Insert(x);
 
-    for (int i = 0; i < n; i++)
+    char ch;
+    cout << "Enter 'y' to continue : ";
+    cin >> ch;
+
+    if (ch == 'y')
     {
-      int x;
-      cout << "Enter element " << i + 1 << ": ";
-      cin >> x;
-      Insert(x);
+      CreateLL();
     }
   }
 
