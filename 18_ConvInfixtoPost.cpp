@@ -62,11 +62,12 @@ class InfixToPostfix
     }
 
 public:
-
     void readInfix()
     {
         cout << "Enter an infix expression: ";
         getline(cin, infix);
+
+        check();
     }
 
     void displayInfix()
@@ -90,7 +91,7 @@ public:
                     operand += infix[i];
                     i++;
                 }
-                i--; 
+                i--;
                 postfix += operand + ' ';
             }
             else if (c == '(')
@@ -127,6 +128,38 @@ public:
         }
 
         return postfix;
+    }
+
+    bool isOperator(char c)
+    {
+        return (c == '+' || c == '-' || c == '*' || c == '/' || c == '^');
+    }
+
+    void check()
+    {
+
+        int operand = 0, operatorr = 0;
+
+        for (char c : infix)
+        {
+            if (isdigit(c))
+            {
+                operand++;
+            }
+            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+            {
+                operatorr++;
+            }
+        }
+
+        if (operatorr != operand - 1 || isOperator(infix[infix.length() - 1]))
+        {
+            cout << endl
+                 << endl
+                 << "Invalid expression!..Re-Enter..!" << endl
+                 << endl;
+            readInfix();
+        }
     }
 };
 
