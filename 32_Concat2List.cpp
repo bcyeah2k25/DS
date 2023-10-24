@@ -83,7 +83,9 @@ public:
     LinkedList ConCat(LinkedList li)
     {
 
-        LinkedList temp(*this);
+        LinkedList temp;
+        
+        temp.start = start;
 
         Node *lastNode = temp.start;
 
