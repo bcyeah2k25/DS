@@ -1,8 +1,7 @@
 /*Write a C++ program to create and
 insert an element anywhere in the circular list.*/
 
-//not complete
-
+// not complete
 
 #include <iostream>
 using namespace std;
@@ -39,23 +38,29 @@ public:
         {
             cout << node->data;
             node = node->next;
-            if(node != start){
-                cout<< " --> ";
+            if (node != start)
+            {
+                cout << " --> ";
             }
         } while (node != start);
     }
 
     void CreateLL()
     {
-        cout << "Enter number of elements: ";
-        cin >> n;
+        int x;
+        n++;
+        cout << endl
+             << "Enter element " << n << " : ";
+        cin >> x;
+        Insert(x);
 
-        for (int i = 0; i < n; i++)
+        char ch;
+        cout << "Enter 'y' to continue : ";
+        cin >> ch;
+
+        if (ch == 'y')
         {
-            int x;
-            cout << "Enter element " << i + 1 << ": ";
-            cin >> x;
-            Insert(x);
+            CreateLL();
         }
     }
 

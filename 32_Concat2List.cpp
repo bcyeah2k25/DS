@@ -12,6 +12,7 @@ struct Node
 class LinkedList
 {
     Node *start;
+    int n;
 
 public:
     LinkedList()
@@ -21,20 +22,20 @@ public:
 
     void CreateLL()
     {
-
-        int n;
+        int x;
+        n++;
         cout << endl
-             << "Enter the limit : ";
-        cin >> n;
+             << "Enter element " << n << " : ";
+        cin >> x;
+        Insert(x);
 
-        for (int i = 0; i < n; i++)
+        char ch;
+        cout << "Enter 'y' to continue : ";
+        cin >> ch;
+
+        if (ch == 'y')
         {
-            int x;
-            cout << endl
-                 << "Enter the number " << (i + 1) << " : ";
-            cin >> x;
-
-            Insert(x);
+            CreateLL();
         }
     }
 
