@@ -84,7 +84,6 @@ public:
     {
 
         LinkedList temp;
-        
         temp.start = start;
 
         Node *lastNode = temp.start;
