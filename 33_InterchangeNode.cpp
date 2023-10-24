@@ -126,14 +126,22 @@ public:
         }
 
         if (prevX != NULL)
+        {
             prevX->next = currY;
+        }
         else
+        {
             start = currY;
+        }
 
         if (prevY != NULL)
+        {
             prevY->next = currX;
+        }
         else
+        {
             start = currX;
+        }
 
         Node *temp = currX->next;
         currX->next = currY->next;
