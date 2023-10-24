@@ -31,7 +31,7 @@ public:
         }
 
         cout << endl
-             << "Enter the elemets of the array :-" << endl;
+             << "Enter the elements of the array :-" << endl;
         for (int i = 0; i < n; i++)
         {
             cin >> values[i];
