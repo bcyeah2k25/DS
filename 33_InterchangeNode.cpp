@@ -12,7 +12,6 @@ struct Node
 
 class LinkedList
 {
-private:
     Node *start;
     int n;
 
