@@ -146,7 +146,7 @@ public:
             {
                 operand++;
             }
-            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+            else if (isOperator(c))
             {
                 operatorr++;
             }
