@@ -69,13 +69,14 @@ public:
         }
     }
 
-    void Swap(int &x, int &y){
+    void Swap(int &x, int &y)
+    {
         int temp = x;
         x = y;
         y = temp;
     }
 
-    void Asc()
+    void Sort(char order)
     {
 
         Node *temp = start;
@@ -86,34 +87,21 @@ public:
 
             while (next != nullptr)
             {
-                if (next->data < temp->data)
+                if (order == 'a')
                 {
-                    Swap(next->data,temp->data);
+
+                    if (next->data < temp->data)
+                    {
+                        Swap(next->data, temp->data);
+                    }
                 }
-
-                next = next->next;
-            }
-
-            temp = temp->next;
-        }
-
-        DispLL();
-    }
-
-    void Desc()
-    {
-
-        Node *temp = start;
-
-        while (temp != nullptr)
-        {
-            Node *next = temp->next;
-
-            while (next != nullptr)
-            {
-                if (next->data > temp->data)
+                else
                 {
-                    Swap(next->data,temp->data);
+
+                    if (next->data > temp->data)
+                    {
+                        Swap(next->data, temp->data);
+                    }
                 }
 
                 next = next->next;
@@ -156,10 +144,10 @@ int main()
         switch (cho)
         {
         case 1:
-            l.Asc();
+            l.Sort('a');
             break;
         case 2:
-            l.Desc();
+            l.Sort('d');
             break;
         case 0:
             cout << endl
