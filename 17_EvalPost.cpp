@@ -48,6 +48,8 @@ public:
         cout << endl
              << "Enter the postfix expression : ";
         getline(cin, p);
+
+        check();
     }
 
     void Disp()
@@ -98,6 +100,32 @@ public:
         }
 
         return stack.pop();
+    }
+
+    void check()
+    {
+
+        int operand = 0, operatorr = 0;
+
+        for (char c : p)
+        {
+            if (isdigit(c))
+            {
+                operand++;
+            }
+            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+            {
+                operatorr++;
+            }
+        }
+
+        if (operatorr != operand - 1 || isdigit(p[p.length() - 1]))
+        {
+            cout << endl
+                 << endl
+                 << "Invalid expression!..Re-Enter..!" << endl;
+            ReadP();
+        }
     }
 };
 
