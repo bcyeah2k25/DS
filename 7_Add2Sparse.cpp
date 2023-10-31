@@ -19,7 +19,7 @@ public:
             cout << "Enter the (row size) (column size) (number of non-zero numbers) : ";
             cin >> r >> c >> nz;
 
-            if ((r < 1 || r > MAX) || (c < 1 || c > MAX) || (nz < 1 || nz >= ((r * c) / 2)) )
+            if ((r < 1 || r > MAX) || (c < 1 || c > MAX) || (nz < 1 || nz > ((r * c) / 2)))
             {
                 cout << "\nInvalid values......Re-Enter!" << endl;
             }
@@ -57,6 +57,7 @@ public:
 
     void DisplayM()
     {
+        sortRow();
         cout << endl
              << "Sparse Matrix is :-" << endl;
         int nz = s[0][2];
@@ -184,6 +185,23 @@ public:
         temp.s[0][2] = c - 1;
 
         return temp;
+    }
+
+    void sortRow()
+    {
+        int nz = s[0][2];
+        for (int i = 1; i < nz; i++)
+        {
+            for (int j = 1; j < nz - i + 1; j++)
+            {
+                if (s[j][0] > s[j + 1][0] || (s[j][0] == s[j + 1][0] && s[j][1] > s[j + 1][1]))
+                {
+                    swap(s[j][0], s[j + 1][0]);
+                    swap(s[j][1], s[j + 1][1]);
+                    swap(s[j][2], s[j + 1][2]);
+                }
+            }
+        }
     }
 };
 
