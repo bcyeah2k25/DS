@@ -107,13 +107,21 @@ public:
 
         int operand = 0, operatorr = 0;
 
-        for (char c : p)
+        for (int j = 0; j < p.length(); j++)
         {
-            if (isdigit(c))
+
+            if (isdigit(p[j]))
             {
+                int num = 0;
+                while (isdigit(p[j]))
+                {
+                    num = num * 10 + (p[j] - 48);
+                    j++;
+                }
+                j--;
                 operand++;
             }
-            else if (c == '+' || c == '-' || c == '*' || c == '/' || c == '^')
+            else if (p[j] == '+' || p[j] == '-' || p[j] == '*' || p[j] == '/' || p[j] == '^')
             {
                 operatorr++;
             }
