@@ -13,6 +13,14 @@ class CQueue
     int n;
 
 public:
+    void viewData(string N)
+    {
+        cout << endl
+             << endl;
+        cout << "\t" << N << endl;
+        cout << "\t| R : " << r << "|" << endl
+             << "\t| F : " << f << "|" << endl;
+    }
     CQueue()
     {
         f = r = -1;
@@ -30,24 +38,38 @@ public:
 
     void DispCQ()
     {
+
+        viewData("Before Displaying");
         if (isEmpty())
         {
-            cout << endl
-                 << endl
-                 << "Queue is empty." << endl;
+            cout << "Queue is empty." << endl;
             return;
         }
 
-        cout << endl
-             << endl
-             << "Queue: ";
-        int i = f;
-        do
+        cout << "Queue: ";
+        if (r >= f)
         {
-            cout << q[i] << "\t";
-            i = (i + 1) % MAX;
-        } while (i != (r + 1) % MAX);
-        cout << endl;
+            int i = f;
+            do
+            {
+                cout << q[i] << "\t";
+                i = (i + 1) % MAX;
+            } while (i != (r + 1) % MAX);
+            cout << endl;
+        }
+        else
+        {
+
+            for (int i = 0; i <= r; i++)
+            {
+                cout << q[i] << "\t";
+            }
+
+            for (int i = f; i < MAX; i++)
+            {
+                cout << q[i] << "\t";
+            }
+        }
     }
 
     void ReadCQ()
@@ -71,16 +93,16 @@ public:
              << "Enter " << n << " elements for the queue: ";
         for (int i = 0; i < n; i++)
         {
-            cin >> q[(r + 1) % MAX];
             r = (r + 1) % MAX;
+            cin >> q[r];
         }
-
         f = 0;
-
+        viewData("After reading");
         DispCQ();
     }
     void InsCQ()
     {
+        viewData("Before inserting");
         if (isFull())
         {
             cout << endl
@@ -100,12 +122,13 @@ public:
 
         r = (r + 1) % MAX;
         q[r] = x;
-
+        viewData("After inserting");
         DispCQ();
     }
 
     void DelCQ()
     {
+        viewData("Before deleting");
         if (isEmpty())
         {
             cout << endl
@@ -126,7 +149,7 @@ public:
         }
 
         cout << "Element " << x << " deleted successfully!" << endl;
-
+        viewData("after deleting");
         DispCQ();
     }
 };
