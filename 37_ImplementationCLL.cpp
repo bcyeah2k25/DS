@@ -1,6 +1,5 @@
-/*Write a C++ program to delete an element in
-the circular list. Menu driven program. (at
-beginning, end, anywhere).*/
+/*Write a C++ program to
+Implementation of circular list.*/
 
 #include <iostream>
 using namespace std;
@@ -24,27 +23,16 @@ public:
         n = 0;
     }
 
-    void DispDeleted(int x)
-    {
-        cout << endl
-             << endl
-             << "Node with element " << x << " has been deleted successfully!" << endl;
-    }
-
     void DispLL()
     {
         if (start == nullptr)
         {
-            cout << endl
-                 << endl
-                 << "List is empty.....Exiting.." << endl;
-            exit(0);
+            cout << "List is empty." << endl;
+            return;
         }
 
         Node *node = start;
-        cout << endl
-             << endl
-             << "List: ";
+        cout << "\nList: ";
         do
         {
             cout << node->data;
@@ -106,57 +94,69 @@ public:
         }
         return curr;
     }
-    void DelEnd()
+
+    void InsertAtPos()
     {
 
-        if (start->next == start)
+        int pos, x;
+        cout << endl
+             << "Enter the element to insert : ";
+        cin >> x;
+        while (true)
         {
-            DispDeleted(start->data);
-            start = nullptr;
+            cout << endl
+                 << "Enter the position you want to enter : ";
+            cin >> pos;
+            pos--;
+            cout << "\n\nPositon : " << pos << " N : " << n << endl;
+            if (pos < 0 || pos > n)
+            {
+                cout << endl
+                     << endl
+                     << "Invalid position...Re-Enter!" << endl;
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        if (pos == 0)
+        {
+            Node *newNode = new Node;
+            Node *temp = start;
+
+            while (temp->next != start)
+            {
+                temp = temp->next;
+            }
+
+            temp->next = newNode;
+            newNode->next = start;
+            start = newNode;
+            newNode->data = x;
         }
         else
         {
-            Node *delNode = start, *prev;
+            Node *newNode = new Node;
+            Node *prevNode = SearchNode(pos - 1);
 
-            while (delNode->next != start)
-            {
-                prev = delNode;
-                delNode = delNode->next;
-            }
-
-            prev->next = start;
-            DispDeleted(delNode->data);
-            delete delNode;
+            newNode->data = x;
+            newNode->next = prevNode->next;
+            prevNode->next = newNode;
         }
-        n--;
+        n++;
+        cout << endl
+             << endl
+             << "Element (" << x << ") has been inserted at position (" << (pos + 1) << ")" << endl;
+
         DispLL();
     }
-    void DelBeg()
+    void DispDeleted(int x, int pos)
     {
-
-        if (start->next == start)
-        {
-            DispDeleted(start->data);
-            start = nullptr;
-        }
-        else
-        {
-
-            Node *delNode = start;
-            Node *lastNode = start;
-
-            while (lastNode->next != start)
-            {
-                lastNode = lastNode->next;
-            }
-            start = delNode->next;
-            lastNode->next = start;
-            DispDeleted(delNode->data);
-            delete delNode;
-        }
-
-        n--;
-        DispLL();
+        cout << endl
+             << endl
+             << "Node with element " << x << " at position " << (pos + 1) << " has been deleted successfully!" << endl;
     }
     void DelAtPos()
     {
@@ -182,7 +182,25 @@ public:
 
         if (pos == 0)
         {
-            DelBeg();
+            if (start->next == start)
+            {
+                DispDeleted(start->data, pos);
+                start = nullptr;
+            }
+            else
+            {
+                Node *delNode = start;
+                Node *lastNode = start;
+
+                while (lastNode->next != start)
+                {
+                    lastNode = lastNode->next;
+                }
+                start = delNode->next;
+                lastNode->next = start;
+                DispDeleted(delNode->data, pos);
+                delete delNode;
+            }
         }
         else
         {
@@ -191,30 +209,28 @@ public:
             Node *delNode = prev->next;
 
             prev->next = delNode->next;
-            DispDeleted(delNode->data);
+            DispDeleted(delNode->data, pos);
             delete delNode;
-            DispLL();
         }
+
+        DispLL();
     }
 };
 
 int main()
 {
-    char ch;
+    int choice;
     CircularLinkedList list;
     list.CreateLL();
     list.DispLL();
-
-    int choice;
 
     while (true)
     {
 
         cout << endl
              << endl;
-        cout << "1.Delete from begning" << endl
-             << "2.Delete from end" << endl
-             << "3.Delete from position" << endl
+        cout << "1.Insert" << endl
+             << "2.Delete" << endl
              << "0.Exit" << endl
              << "Enter your choice : ";
         cin >> choice;
@@ -225,21 +241,19 @@ int main()
             cout << endl
                  << endl
                  << "Exiting...." << endl;
+            exit(0);
             break;
-
         case 1:
-            list.DelBeg();
+            list.InsertAtPos();
             break;
         case 2:
-            list.DelEnd();
-            break;
-        case 3:
             list.DelAtPos();
             break;
 
         default:
             cout << endl
-                 << "Invalid choice! " << endl;
+                 << endl
+                 << "Invalid choice !" << endl;
             break;
         }
     }
