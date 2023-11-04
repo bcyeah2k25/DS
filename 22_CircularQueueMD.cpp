@@ -13,14 +13,6 @@ class CQueue
     int n;
 
 public:
-    void viewData(string N)
-    {
-        cout << endl
-             << endl;
-        cout << "\t" << N << endl;
-        cout << "\t| R : " << r << "|" << endl
-             << "\t| F : " << f << "|" << endl;
-    }
     CQueue()
     {
         f = r = -1;
@@ -39,7 +31,6 @@ public:
     void DispCQ()
     {
 
-        viewData("Before Displaying");
         if (isEmpty())
         {
             cout << "Queue is empty." << endl;
@@ -49,13 +40,10 @@ public:
         cout << "Queue: ";
         if (r >= f)
         {
-            int i = f;
-            do
+            for (int i = f; i <= r; i++)
             {
                 cout << q[i] << "\t";
-                i = (i + 1) % MAX;
-            } while (i != (r + 1) % MAX);
-            cout << endl;
+            }
         }
         else
         {
@@ -97,12 +85,10 @@ public:
             cin >> q[r];
         }
         f = 0;
-        viewData("After reading");
         DispCQ();
     }
     void InsCQ()
     {
-        viewData("Before inserting");
         if (isFull())
         {
             cout << endl
@@ -122,13 +108,11 @@ public:
 
         r = (r + 1) % MAX;
         q[r] = x;
-        viewData("After inserting");
         DispCQ();
     }
 
     void DelCQ()
     {
-        viewData("Before deleting");
         if (isEmpty())
         {
             cout << endl
@@ -149,7 +133,6 @@ public:
         }
 
         cout << "Element " << x << " deleted successfully!" << endl;
-        viewData("after deleting");
         DispCQ();
     }
 };
