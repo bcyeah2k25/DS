@@ -142,9 +142,14 @@ public:
         {
             for (int j = i + 1; j < infix.length(); j++)
             {
+                if ((isdigit(infix[i])) && (isdigit(infix[j])))
+                {
+                    i++;
+                    j++;
+                }
                 while (infix[j] == ' ')
                 {
-                    ++j;
+                    j++;
                 }
                 if ((isalnum(infix[i])) && (isalnum(infix[j])))
                 {
