@@ -142,7 +142,7 @@ public:
         {
             for (int j = i + 1; j < infix.length(); j++)
             {
-                if ((isalnum(infix[i])) && (isalnum(infix[j])))
+                while ((isalnum(infix[i])) && (isalnum(infix[j])))
                 {
                     i++;
                     j++;
@@ -170,10 +170,9 @@ public:
                     readInfix();
                 }
                 i++;
-                while (infix[i] == ' ')
+                while (infix[i] == ' ' && (i < infix.length() - 1))
                 {
                     i++;
-                    j++;
                 }
             }
         }
