@@ -53,19 +53,12 @@ public:
         {
             newNode->prev = nullptr;
             start = newNode;
+            end = newNode;
         }
         else
         {
-
-            Node *temp = start;
-
-            while (temp->next != nullptr)
-            {
-                temp = temp->next;
-            }
-            temp->next = newNode;
-            newNode->prev = temp;
-
+            end->next = newNode;
+            newNode->prev = end;
             end = newNode;
         }
     }
