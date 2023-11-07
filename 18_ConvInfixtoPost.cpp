@@ -177,10 +177,13 @@ public:
             }
         }
 
-        if (infix[0] == '(')
-            ch = infix[1];
-        else
-            ch = infix[0];
+        int k = 0;
+
+        while (infix[k] == ' ' || infix[k] == '(')
+        {
+            k++;
+        }
+        ch = infix[k];
         if (isOperator(infix[infix.length() - 1]) || isOperator(ch))
         {
 
