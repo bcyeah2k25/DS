@@ -1,4 +1,4 @@
-// (not corrected)write a program to convert infix expression to postfix
+// write a program to convert infix expression to postfix
 #include <iostream>
 #include <string>
 using namespace std;
@@ -142,7 +142,7 @@ public:
         {
             for (int j = i + 1; j < infix.length(); j++)
             {
-                if ((isdigit(infix[i])) && (isdigit(infix[j])))
+                if ((isalnum(infix[i])) && (isalnum(infix[j])))
                 {
                     i++;
                     j++;
