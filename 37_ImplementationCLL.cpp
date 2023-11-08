@@ -108,7 +108,6 @@ public:
                  << "Enter the position you want to enter : ";
             cin >> pos;
             pos--;
-            cout << "\n\nPositon : " << pos << " N : " << n << endl;
             if (pos < 0 || pos > n)
             {
                 cout << endl
