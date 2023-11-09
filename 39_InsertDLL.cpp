@@ -86,8 +86,7 @@ public:
             cout << temp->data << " --> ";
             temp = temp->next;
         }
-        cout << "NULL"
-             << "count : " + to_string(count);
+        cout << "NULL";
     }
 
     void DispMsg(string msg)
@@ -135,7 +134,7 @@ public:
     Node *SearchNode(int pos)
     {
 
-        if (pos > 1)
+        if (pos >= 1)
         {
             int p = 1;
             Node *temp = start;
