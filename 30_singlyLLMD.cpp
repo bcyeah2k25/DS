@@ -22,50 +22,35 @@ public:
         count = 0;
     }
 
-    void insert(int value)
-    {
-        int pos;
 
-        while (true)
-        {
-            cout << "Enter the position to insert : ";
-            cin >> pos;
-            pos--;
-            if (pos < 0 || pos > count)
-            {
-                cout << endl
-                     << endl
-                     << "Invalid position..!" << endl
-                     << endl;
-            }
-            else
-            {
-                break;
-            }
-        }
+    void insert()
+    {
+        int value;
+
+        cout << "Enter the value to insert: ";
+        cin >> value;
 
         Node *newNode = new Node;
         newNode->data = value;
+        newNode->next = nullptr;
 
-        if (pos == 0)
+        if (start == nullptr)
         {
-            newNode->next = start;
             start = newNode;
         }
         else
         {
 
-            int f = 0;
-            Node *prev = start;
-            while (f != pos - 1)
+            Node *temp = start;
+
+            while (temp->next != nullptr)
             {
-                prev = prev->next;
-                f++;
+                temp = temp->next;
             }
-            newNode->next = prev->next;
-            prev->next = newNode;
+            temp->next = newNode;
         }
         count++;
+
     }
 
     void display()
@@ -152,9 +137,20 @@ int main()
         switch (choice)
         {
         case 1:
-            cout << "Enter the value to insert: ";
-            cin >> value;
-            list.insert(value);
+            char ch;
+            list.insert();
+            while(true){
+
+                cout<<"\n\nDo you want to insert another element : ";
+                cin>>ch;
+
+                if(ch == 'y'){
+                    list.insert();
+                }else{
+                    break;
+                }
+
+            }
             list.display();
             break;
         case 2:
