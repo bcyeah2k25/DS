@@ -82,44 +82,44 @@ public:
         root = DeleteNode(root, key);
     }
 
-    Node *DeleteNode(Node *root, int key)
+    Node *DeleteNode(Node *node, int key)
     {
-        if (root == nullptr)
+        if (node == nullptr)
         {
-            return root;
+            return node;
         }
 
-        if (key < root->data)
+        if (key < node->data)
         {
-            root->left = DeleteNode(root->left, key);
+            node->left = DeleteNode(node->left, key);
         }
-        else if (key > root->data)
+        else if (key > node->data)
         {
-            root->right = DeleteNode(root->right, key);
+            node->right = DeleteNode(node->right, key);
         }
         else
         {
             // Node with only one child or no child
-            if (root->left == nullptr)
+            if (node->left == nullptr)
             {
-                Node *temp = root->right;
-                delete root;
+                Node *temp = node->right;
+                delete node;
                 return temp;
             }
-            else if (root->right == nullptr)
+            else if (node->right == nullptr)
             {
-                Node *temp = root->left;
-                delete root;
+                Node *temp = node->left;
+                delete node;
                 return temp;
             }
 
             // Node with two children
-            Node *temp = FindMin(root->right);
-            root->data = temp->data;
-            root->right = DeleteNode(root->right, temp->data);
+            Node *temp = FindMin(node->right);
+            node->data = temp->data;
+            node->right = DeleteNode(node->right, temp->data);
         }
 
-        return root;
+        return node;
     }
 
     Node *FindMin(Node *node)
@@ -133,6 +133,12 @@ public:
 
     void Disp()
     {
+        if (root == nullptr)
+        {
+            cout << "\n\nEmpty Tree!\n";
+            return;
+        }
+
         cout << "\n\nInOrder traversal : ";
         InOrder(root);
     }
@@ -155,7 +161,6 @@ int main()
     b.Create();
     b.Disp();
 
-
     int ch;
 
     while (true)
@@ -165,23 +170,25 @@ int main()
              << "2.Delete" << endl
              << "0.Exit" << endl
              << "Enter your choice : ";
-        cin>>ch;
+        cin >> ch;
 
-        switch(ch){
+        switch (ch)
+        {
 
-            case 1 : 
-                b.Create();
-                b.Disp();
-                break;
-            case 2 : 
-                b.Delete();
-                b.Disp();
-                break;
-            case 0 : 
-                cout<<"\n\nExiting....\n\n";
-                exit(0);
-                break;
-            default : cout<<"\n\nInvalid choice...Re-Try..\n";
+        case 1:
+            b.Create();
+            b.Disp();
+            break;
+        case 2:
+            b.Delete();
+            b.Disp();
+            break;
+        case 0:
+            cout << "\n\nExiting....\n\n";
+            exit(0);
+            break;
+        default:
+            cout << "\n\nInvalid choice...Re-Try..\n";
         }
     }
 
