@@ -136,7 +136,7 @@ int main()
         default:
             cout << "Invalid choice. Please try again.\n";
         }
-    } while (choice != 4);
+    } while (choice != 0);
 
     return 0;
 }
