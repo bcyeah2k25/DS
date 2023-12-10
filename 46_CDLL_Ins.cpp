@@ -2,8 +2,6 @@
  element in the circular doubly linked list. Menu driven
 program. (at beginning, end, anywhere).*/
 
-//not complete 
-
 #include <iostream>
 using namespace std;
 
@@ -20,11 +18,13 @@ class CDLL
 
     Node *start;
     Node *end;
+    int count;
 
 public:
     CDLL()
     {
         start = end = nullptr;
+        count = 0;
     }
 
     void Create()
@@ -39,7 +39,7 @@ public:
             cout << "\nEnter the element to insert: ";
             cin >> x;
 
-            Insert(x);
+            InsertEnd(x);
 
             cout << "\nEnter 'y' to insert next: ";
             cin >> ch;
@@ -51,7 +51,7 @@ public:
         }
     }
 
-    void Insert(int x)
+    void InsertEnd(int x)
     {
 
         Node *newNode = new Node;
@@ -71,6 +71,9 @@ public:
 
             start->prev = end;
         }
+
+        count++;
+        cout << "\n\nNode inserted with element " << x << "!";
     }
 
     void Disp()
@@ -103,62 +106,91 @@ public:
         }
     }
 
-    Node *SearchNode(int x)
+    Node *SearchNode(int pos)
     {
         Node *temp = start;
+        int p = 1;
 
-        do
+        while (p != pos)
         {
-            if (temp->data == x)
-            {
-                return temp;
-            }
             temp = temp->next;
+            p++;
+        }
 
-        } while (temp != start);
-
-        return nullptr;
+        return temp;
     }
 
-    void InsAny()
+    void InsPos(int x)
     {
 
-        int x;
+        int pos;
 
-        cout << "Enter the element to insert : ";
-        cin >> x;
-
-        Node *delNode = SearchNode(x);
-
-        if (delNode == nullptr)
+        while (true)
         {
-            cout << "\n\nElement not found!..Re-Try!";
-            Delete();
-            return;
+
+            cout << "Enter the position to insert : ";
+            cin >> pos;
+
+            if (pos < 1 || pos > (count + 1))
+            {
+                cout << "\n\nInvalid position..Re-Try!";
+            }
+            else
+            {
+                break;
+            }
         }
-        else if (delNode == start && delNode == end)
+
+        if (pos == 1)
         {
-            start = end = nullptr;
+            InsBeg(x);
+        }
+        else if (pos == (count + 1))
+        {
+            InsertEnd(x);
         }
         else
         {
 
-            delNode->next->prev = delNode->prev;
-            delNode->prev->next = delNode->next;
+            Node *temp = SearchNode(pos);
 
-            if (delNode == start)
-            {
-                start = start->next;
-            }
-            else if (delNode == end)
-            {
-                end = end->prev;
-            }
+            Node *newNode = new Node;
+            newNode->data = x;
 
-            delete delNode;
+            newNode->next = temp;
+            newNode->prev = temp->prev;
+            temp->prev->next = newNode;
+            temp->prev = newNode;
+
+            count++;
+            cout << "\n\nNode inserted with element " << x << "!";
+        }
+    }
+
+    void InsBeg(int x)
+    {
+
+        Node *newNode = new Node;
+        newNode->data = x;
+
+        if (start == nullptr)
+        {
+
+            newNode->next = newNode->prev = newNode;
+            start = end = newNode;
+        }
+        else
+        {
+
+            newNode->prev = start->prev;
+            newNode->next = start;
+            start->prev = newNode;
+            start = newNode;
+            end->next = newNode;
         }
 
-        cout << "\n\nNode deleted with element " << x << "!";
+        count++;
+        cout << "\n\nNode inserted with element " << x << "!";
     }
 };
 
@@ -166,6 +198,7 @@ int main()
 {
 
     CDLL list;
+    int x;
 
     list.Create();
     list.Disp();
@@ -175,9 +208,9 @@ int main()
     while (true)
     {
 
-        cout << "\n\n1.Insert" << endl
-             << "2.Delete" << endl
-             << "0.Exit" << endl
+        cout << "\n\n1.Insert at beg" << endl
+             << "2.Insert at end" << endl
+             << "3.Insert at position" << endl
              << "Enter your choice : ";
         cin >> ch;
 
@@ -185,11 +218,21 @@ int main()
         {
 
         case 1:
-            list.Create();
+            cout<<"Enter the element to insert : ";
+            cin>>x;
+            list.InsBeg(x);
             list.Disp();
             break;
         case 2:
-            list.Delete();
+            cout<<"Enter the element to insert : ";
+            cin>>x;
+            list.InsertEnd(x);
+            list.Disp();
+            break;
+        case 3 : 
+            cout<<"Enter the element to insert : ";
+            cin>>x;
+            list.InsPos(x);
             list.Disp();
             break;
         case 0:
