@@ -22,6 +22,72 @@ public:
         count = 0;
     }
 
+    void Create()
+    {
+
+        insert();
+        char ch;
+        cout << "Do you want to insert another element : ";
+        cin >> ch;
+        if (ch == 'y')
+        {
+            Create();
+        }
+        return;
+    }
+
+    void insertPos()
+    {
+        int x;
+        cout << "Enter the value to insert : ";
+        cin >> x;
+
+        int pos;
+        while (true)
+        {
+            cout << "Enter the position to insert : ";
+            cin >> pos;
+
+            if (pos < 1 || pos > (count + 1))
+            {
+                cout << "\n\nInvalid position !";
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        Node *prevNode = SearchNodePos(pos);
+        Node *newNode = new Node;
+        newNode->data = x;
+
+        if (prevNode == nullptr)
+        {
+            newNode->next = start;
+            start = newNode;
+        }
+        else
+        {
+            newNode->next = prevNode->next;
+            prevNode->next = newNode;
+        }
+
+        cout << "\n\nNew node inserted to position " << pos;
+        count++;
+        display();
+    }
+
+    Node *SearchNodePos(int pos)
+    {
+        Node *curr = start, *prev = nullptr;
+        for (int i = 1; i < pos; i++)
+        {
+            prev = curr;
+            curr = curr->next;
+        }
+        return prev;
+    }
 
     void insert()
     {
@@ -50,7 +116,6 @@ public:
             temp->next = newNode;
         }
         count++;
-
     }
 
     void display()
@@ -126,6 +191,9 @@ int main()
     LinkedList list;
     int choice, value;
 
+    list.Create();
+    list.display();
+
     while (true)
     {
         cout << "\n\n1. Insert into list\n"
@@ -138,18 +206,21 @@ int main()
         {
         case 1:
             char ch;
-            list.insert();
-            while(true){
+            list.insertPos();
+            while (true)
+            {
 
-                cout<<"\n\nDo you want to insert another element : ";
-                cin>>ch;
+                cout << "\n\nDo you want to insert another element : ";
+                cin >> ch;
 
-                if(ch == 'y'){
-                    list.insert();
-                }else{
+                if (ch == 'y')
+                {
+                    list.insertPos();
+                }
+                else
+                {
                     break;
                 }
-
             }
             list.display();
             break;
