@@ -3,7 +3,7 @@ ascending or descending order of the
 information field (linked list,
 dynamic memory allocation techniques).*/
 
-//Swapping nodes...!
+// Swapping nodes...!
 
 #include <iostream>
 using namespace std;
@@ -17,13 +17,11 @@ struct Node
 class LinkedList
 {
     Node *start;
-    int n;
 
 public:
     LinkedList()
     {
         start = nullptr;
-        n = 0;
     }
 
     void CreateLL()
@@ -50,7 +48,6 @@ public:
             }
             temp->next = newNode;
         }
-        n++;
     }
 
     void DispLL()
