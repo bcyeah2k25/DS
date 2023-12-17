@@ -18,6 +18,7 @@ public:
     LinkedList()
     {
         start = nullptr;
+        n = 0;
     }
 
     void CreateLL()
