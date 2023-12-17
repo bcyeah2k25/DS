@@ -38,15 +38,17 @@ public:
     {
         int x;
         n++;
-        cout<<endl<<"Enter element "<<n<<" : ";
-        cin>>x;
+        cout << endl
+             << "Enter element " << n << " : ";
+        cin >> x;
         Insert(x);
 
         char ch;
-        cout<<"Enter 'y' to continue : ";
-        cin>>ch;
+        cout << "Enter 'y' to continue : ";
+        cin >> ch;
 
-        if(ch == 'y'){
+        if (ch == 'y')
+        {
             CreateLL();
         }
     }
