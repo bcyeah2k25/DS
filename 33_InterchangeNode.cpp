@@ -116,12 +116,6 @@ public:
             currY = prevY->next;
         }
 
-        if (currX == NULL || currY == NULL)
-        {
-            cout << "\n\nNode not found, no swap done\n\n";
-            return;
-        }
-
         if (prevX != NULL)
         {
             prevX->next = currY;
